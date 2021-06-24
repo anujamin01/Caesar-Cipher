@@ -1,5 +1,5 @@
 from tkinter import *
-
+import tkinter as tk
 '''
 Program to implement a Caesar Cipher
 
@@ -57,47 +57,48 @@ def decrypt(input, n):
 Helper function that will print the encryption to console
 '''
 
+res = ""
 
 def print_encrypt():
-    string = f"(str.get())"
-    shift = n.get()
-    res = encrypt(input.get(), shift)
+    res = encrypt(inputE.get(), n.get())
     print(res)
-
-print(encrypt("A", 1))
+    #output.insert(tk.INSERT, res)
+    return res
 
 '''
 Helper function that will print the decryption to console
 '''
-
 def print_decrypt():
-    string = f"(str.get())"
-    shift =  n.get()
-    res = decrypt(str.get(), shift)
+    res = decrypt(inputD.get(), n.get())
     print(res)
+    #output.insert(tk.INSERT, res)
+    return res
 
 ### Building a GUI ###
 cipher = Tk()
 cipher.title("Caesar Cipher")
 cipher.geometry("250x400")
 
+
 # String input and int input
-input = StringVar()
+inputE = StringVar()
 n = IntVar()
 
 # Text and entry to insert encrypt
 encrypt_txt = Label(cipher, text="Enter string to encrypt",
                     font=("Arial", 11)).place(x=10, y=10)
 
-encrypt_entry = Entry(cipher, textvariable=input, bg="white",
+encrypt_entry = Entry(cipher, textvariable=inputE, bg="white",
                       width=20, font=("Arial", 11)).place(x=10, y=30)
 
+inputD = StringVar()
+#n = IntVar()
 
 # Text entry to insert decrypt
 decrypt_txt = Label(cipher, text = "Enter string to decrypt",
                    font = ("Arial", 11)).place(x = 10, y = 140)
 
-decrypt_entry = Entry(cipher, textvariable = str, bg = "white",
+decrypt_entry = Entry(cipher, textvariable = inputD, bg = "white",
                   width = 20, font = ("Arial",11)).place(x = 10, y = 160)
 
 
@@ -110,6 +111,9 @@ n_entry = Entry(cipher, textvariable=n, bg="white", width=20,
                 font=("Arial", 11)).place(x=10, y=110)
 
 encrypt_call = Button(cipher, text="ENCRYPT!", width=10, command=print_encrypt).place(x=10, y=60)
-decrpyt_call = Button(cipher, text="DECRYPT!", width=10, command=print_decrypt).place(x=10, y=190)
-# Output = Text(cipher, height = 2, width = 20).place(x = 10, y = 70)
+decrypt_call = Button(cipher, text="DECRYPT!", width=10, command=print_decrypt).place(x=10, y=190)
+
+#output = tk.Text(cipher, height = 2, width = 20,font = ("Arial", 11)).place(x = 10, y = 240)
+
+
 cipher.mainloop()
